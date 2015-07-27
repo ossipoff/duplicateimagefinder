@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DuplicateImageFinder.Demo
 {
@@ -18,7 +19,9 @@ namespace DuplicateImageFinder.Demo
 				List<string> imagePaths = new List<string> ();
 
 				imagePaths.AddRange(Directory.GetFiles (directoryPath, "*.jpg", SearchOption.AllDirectories));
+				imagePaths.AddRange(Directory.GetFiles (directoryPath, "*.JPG", SearchOption.AllDirectories));
 				imagePaths.AddRange(Directory.GetFiles (directoryPath, "*.png", SearchOption.AllDirectories));
+				imagePaths.AddRange(Directory.GetFiles (directoryPath, "*.PNG", SearchOption.AllDirectories));
 
 				if (imagePaths.Count == 0) {
 					WriteUsageInfo ("No .jpg or .png files in directory or sub directories!"); return;
@@ -41,11 +44,24 @@ namespace DuplicateImageFinder.Demo
 		}
 
 		private static void WriteResult(Dictionary<string, List<string>> result) {
-			foreach (var item in result) {
-				Console.WriteLine (string.Format ("{0} ({1})", item.Key, item.Value.Count));
-				foreach (var path in item.Value) {
-					Console.WriteLine (string.Format ("\t{0}", path));
+			var imageCount = result.Select (c => c.Value).Count ();
+
+			Console.WriteLine (string.Format ("{0} images processed", imageCount));
+
+			var duplicates = result.Where (kvp => kvp.Value.Count > 1);
+
+			if (duplicates.Count() > 0) {
+				Console.WriteLine ("Found the following duplicates:");
+				foreach (var item in duplicates) {
+					if (item.Value.Count > 1) {
+						Console.WriteLine (string.Format ("{0} ({1})", item.Key, item.Value.Count));
+						foreach (var path in item.Value) {
+							Console.WriteLine (string.Format ("\t{0}", path));
+						}
+					}
 				}
+			} else {
+				Console.WriteLine ("No duplicates found");
 			}
 		}
 	}

@@ -38,6 +38,10 @@ namespace Ossisoft
 			graph = Graphics.FromImage (image);
 			graph.FillEllipse (brush, 0, 0, 500, 500);
 			dictionaryImageLoader.SaveImage (aRedFilledEllipse500x500, image);
+
+			image = new Bitmap (500, 500);
+			graph = Graphics.FromImage (image);
+			graph.FillEllipse (brush, 0, 0, 500, 500);
 			dictionaryImageLoader.SaveImage (anotherRedFilledEllipse500x500, image);
 
 			image = new Bitmap (500, 500);

@@ -54,13 +54,15 @@ namespace Ossisoft
 
 		private string CalculateComparisonMD5 (string imagePath)
 		{
-			var bmpOriginal = imageLoader.LoadImage (imagePath);
-			var bmpComparison = BitmapTo4bppGrayScale (ImageResize (bmpOriginal, comparisonWidth, comparisonHeight));
-
 			byte[] bytes = null;
-			using (MemoryStream ms = new MemoryStream ()) {
-				bmpComparison.Save (ms, ImageFormat.Png);
-				bytes = ms.ToArray ();
+
+			using (var bmpOriginal = imageLoader.LoadImage (imagePath)) {
+				using (var bmpComparison = BitmapTo4bppGrayScale (ImageResize (bmpOriginal, comparisonWidth, comparisonHeight))) {
+					using (MemoryStream ms = new MemoryStream ()) {
+						bmpComparison.Save (ms, ImageFormat.Png);
+						bytes = ms.ToArray ();
+					}
+				}
 			}
 
 			byte[] hash = md5.ComputeHash (bytes);
@@ -80,8 +82,9 @@ namespace Ossisoft
 			int height = source.Height;
 
 			Bitmap target = new Bitmap (newWidth, newHeight);
-			Graphics graph = Graphics.FromImage (target);
-			graph.DrawImage (source, new Rectangle (0, 0, newWidth, newHeight), new Rectangle (0, 0, width, height), GraphicsUnit.Pixel);
+			using (Graphics graph = Graphics.FromImage (target)) {
+				graph.DrawImage (source, new Rectangle (0, 0, newWidth, newHeight), new Rectangle (0, 0, width, height), GraphicsUnit.Pixel);
+			}
 
 			return target;
 		}
@@ -127,6 +130,7 @@ namespace Ossisoft
 
 			target.UnlockBits (targetData);
 			source.UnlockBits (sourceData);
+
 			return target;
 		}
 
@@ -141,7 +145,12 @@ namespace Ossisoft
 
 			public Image LoadImage (string imagePath)
 			{
-				return new Bitmap (imagePath);
+				try {
+					return new Bitmap (imagePath);
+				} catch (Exception ex) {
+					throw new FileLoadException (string.Format ("Unable to load image '{0}'", imagePath), ex);
+				}
+
 			}
 
 			#endregion
