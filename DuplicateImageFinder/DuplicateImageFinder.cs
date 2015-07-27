@@ -57,10 +57,6 @@ namespace Ossisoft
 			var bmpOriginal = imageLoader.LoadImage (imagePath);
 			var bmpComparison = BitmapTo4bppGrayScale (ImageResize (bmpOriginal, comparisonWidth, comparisonHeight));
 
-			bmpOriginal.Save ("/home/daniel/Pictures/" + imagePath + ".jpg");
-			bmpComparison.Save ("/home/daniel/Pictures/" + imagePath + ".comp.jpg");
-			//bmpComparison.Save (imagePath + ".comp.jpg");
-
 			byte[] bytes = null;
 			using (MemoryStream ms = new MemoryStream ()) {
 				bmpComparison.Save (ms, ImageFormat.Png);
