@@ -29,18 +29,20 @@
 		private void InitializeComponent()
 		{
 			this.grpBoxPreview = new System.Windows.Forms.GroupBox();
-			this.grpBoxActions = new System.Windows.Forms.GroupBox();
-			this.grpBoxScan = new System.Windows.Forms.GroupBox();
 			this.listView = new System.Windows.Forms.ListView();
+			this.grpBoxActions = new System.Windows.Forms.GroupBox();
 			this.btnSelectAll = new System.Windows.Forms.Button();
 			this.btnClearAll = new System.Windows.Forms.Button();
 			this.btnDeleteSelected = new System.Windows.Forms.Button();
-			this.lblLocation = new System.Windows.Forms.Label();
-			this.txtLocation = new System.Windows.Forms.TextBox();
-			this.btnBrowse = new System.Windows.Forms.Button();
+			this.grpBoxScan = new System.Windows.Forms.GroupBox();
 			this.btnScan = new System.Windows.Forms.Button();
+			this.btnBrowse = new System.Windows.Forms.Button();
+			this.txtLocation = new System.Windows.Forms.TextBox();
+			this.lblLocation = new System.Windows.Forms.Label();
 			this.statusStrip = new System.Windows.Forms.StatusStrip();
 			this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+			this.lblSpacer = new System.Windows.Forms.ToolStripStatusLabel();
+			this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
 			this.grpBoxPreview.SuspendLayout();
 			this.grpBoxActions.SuspendLayout();
 			this.grpBoxScan.SuspendLayout();
@@ -60,6 +62,16 @@
 			this.grpBoxPreview.TabStop = false;
 			this.grpBoxPreview.Text = "Preview Files";
 			// 
+			// listView
+			// 
+			this.listView.CheckBoxes = true;
+			this.listView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.listView.Location = new System.Drawing.Point(3, 17);
+			this.listView.Name = "listView";
+			this.listView.Size = new System.Drawing.Size(589, 322);
+			this.listView.TabIndex = 2;
+			this.listView.UseCompatibleStateImageBehavior = false;
+			// 
 			// grpBoxActions
 			// 
 			this.grpBoxActions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -73,31 +85,6 @@
 			this.grpBoxActions.TabIndex = 1;
 			this.grpBoxActions.TabStop = false;
 			this.grpBoxActions.Text = "Actions";
-			// 
-			// grpBoxScan
-			// 
-			this.grpBoxScan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.grpBoxScan.Controls.Add(this.btnScan);
-			this.grpBoxScan.Controls.Add(this.btnBrowse);
-			this.grpBoxScan.Controls.Add(this.txtLocation);
-			this.grpBoxScan.Controls.Add(this.lblLocation);
-			this.grpBoxScan.Location = new System.Drawing.Point(12, 360);
-			this.grpBoxScan.Name = "grpBoxScan";
-			this.grpBoxScan.Size = new System.Drawing.Size(760, 60);
-			this.grpBoxScan.TabIndex = 1;
-			this.grpBoxScan.TabStop = false;
-			this.grpBoxScan.Text = "Scan";
-			// 
-			// listView
-			// 
-			this.listView.CheckBoxes = true;
-			this.listView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.listView.Location = new System.Drawing.Point(3, 17);
-			this.listView.Name = "listView";
-			this.listView.Size = new System.Drawing.Size(589, 322);
-			this.listView.TabIndex = 2;
-			this.listView.UseCompatibleStateImageBehavior = false;
 			// 
 			// btnSelectAll
 			// 
@@ -135,24 +122,32 @@
 			this.btnDeleteSelected.Text = "Delete Selected";
 			this.btnDeleteSelected.UseVisualStyleBackColor = true;
 			// 
-			// lblLocation
+			// grpBoxScan
 			// 
-			this.lblLocation.AutoSize = true;
-			this.lblLocation.Location = new System.Drawing.Point(6, 24);
-			this.lblLocation.Name = "lblLocation";
-			this.lblLocation.Size = new System.Drawing.Size(98, 15);
-			this.lblLocation.TabIndex = 0;
-			this.lblLocation.Text = "Images Location";
+			this.grpBoxScan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.grpBoxScan.Controls.Add(this.btnScan);
+			this.grpBoxScan.Controls.Add(this.btnBrowse);
+			this.grpBoxScan.Controls.Add(this.txtLocation);
+			this.grpBoxScan.Controls.Add(this.lblLocation);
+			this.grpBoxScan.Location = new System.Drawing.Point(12, 360);
+			this.grpBoxScan.Name = "grpBoxScan";
+			this.grpBoxScan.Size = new System.Drawing.Size(760, 60);
+			this.grpBoxScan.TabIndex = 1;
+			this.grpBoxScan.TabStop = false;
+			this.grpBoxScan.Text = "Scan";
 			// 
-			// txtLocation
+			// btnScan
 			// 
-			this.txtLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-			this.txtLocation.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-			this.txtLocation.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
-			this.txtLocation.Location = new System.Drawing.Point(107, 21);
-			this.txtLocation.Name = "txtLocation";
-			this.txtLocation.Size = new System.Drawing.Size(485, 21);
-			this.txtLocation.TabIndex = 1;
+			this.btnScan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnScan.AutoSize = true;
+			this.btnScan.Location = new System.Drawing.Point(679, 19);
+			this.btnScan.Name = "btnScan";
+			this.btnScan.Size = new System.Drawing.Size(75, 25);
+			this.btnScan.TabIndex = 3;
+			this.btnScan.Text = "&Scan";
+			this.btnScan.UseVisualStyleBackColor = true;
+			this.btnScan.Click += new System.EventHandler(this.btnScan_Click);
 			// 
 			// btnBrowse
 			// 
@@ -166,21 +161,31 @@
 			this.btnBrowse.UseVisualStyleBackColor = true;
 			this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
 			// 
-			// btnScan
+			// txtLocation
 			// 
-			this.btnScan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnScan.AutoSize = true;
-			this.btnScan.Location = new System.Drawing.Point(679, 19);
-			this.btnScan.Name = "btnScan";
-			this.btnScan.Size = new System.Drawing.Size(75, 25);
-			this.btnScan.TabIndex = 3;
-			this.btnScan.Text = "&Scan";
-			this.btnScan.UseVisualStyleBackColor = true;
+			this.txtLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.txtLocation.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.txtLocation.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
+			this.txtLocation.Location = new System.Drawing.Point(107, 21);
+			this.txtLocation.Name = "txtLocation";
+			this.txtLocation.Size = new System.Drawing.Size(485, 21);
+			this.txtLocation.TabIndex = 1;
+			// 
+			// lblLocation
+			// 
+			this.lblLocation.AutoSize = true;
+			this.lblLocation.Location = new System.Drawing.Point(6, 24);
+			this.lblLocation.Name = "lblLocation";
+			this.lblLocation.Size = new System.Drawing.Size(98, 15);
+			this.lblLocation.TabIndex = 0;
+			this.lblLocation.Text = "Images Location";
 			// 
 			// statusStrip
 			// 
 			this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblStatus});
+            this.lblStatus,
+            this.lblSpacer,
+            this.progressBar});
 			this.statusStrip.Location = new System.Drawing.Point(0, 440);
 			this.statusStrip.Name = "statusStrip";
 			this.statusStrip.Size = new System.Drawing.Size(784, 22);
@@ -192,6 +197,18 @@
 			this.lblStatus.Name = "lblStatus";
 			this.lblStatus.Size = new System.Drawing.Size(39, 17);
 			this.lblStatus.Text = "Ready";
+			// 
+			// lblSpacer
+			// 
+			this.lblSpacer.Name = "lblSpacer";
+			this.lblSpacer.Size = new System.Drawing.Size(597, 17);
+			this.lblSpacer.Spring = true;
+			// 
+			// progressBar
+			// 
+			this.progressBar.Name = "progressBar";
+			this.progressBar.Size = new System.Drawing.Size(150, 16);
+			this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
 			// 
 			// FrmMain
 			// 
@@ -234,6 +251,8 @@
 		private System.Windows.Forms.Label lblLocation;
 		private System.Windows.Forms.StatusStrip statusStrip;
 		private System.Windows.Forms.ToolStripStatusLabel lblStatus;
+		private System.Windows.Forms.ToolStripStatusLabel lblSpacer;
+		private System.Windows.Forms.ToolStripProgressBar progressBar;
 	}
 }
 

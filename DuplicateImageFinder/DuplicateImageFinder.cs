@@ -23,6 +23,9 @@ namespace Ossisoft
 
 		private object thisLock = new object();
 
+		public delegate void FileProcessedEventHandler(object sender, FileProcessedEventArgs e);
+		public event FileProcessedEventHandler ImageProcessed;
+
 		static DuplicateImageFinder()
 		{
 			md5 = new MD5CryptoServiceProvider();
@@ -57,6 +60,9 @@ namespace Ossisoft
 					{
 						result.Add(md5, new List<string>(new string[] { imagePath }));
 					}
+
+					if (ImageProcessed != null)
+						ImageProcessed(this, new FileProcessedEventArgs() { FilePath = imagePath });
 				}
 			});
 
@@ -184,4 +190,10 @@ namespace Ossisoft
 
 		}
 	}
+
+	public class FileProcessedEventArgs : EventArgs
+	{
+		public string FilePath { get; set; }
+	}
 }
+
