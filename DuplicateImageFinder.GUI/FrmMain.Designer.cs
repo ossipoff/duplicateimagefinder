@@ -28,8 +28,10 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.grpBoxPreview = new System.Windows.Forms.GroupBox();
 			this.listView = new System.Windows.Forms.ListView();
+			this.imageList = new System.Windows.Forms.ImageList(this.components);
 			this.grpBoxActions = new System.Windows.Forms.GroupBox();
 			this.btnSelectAll = new System.Windows.Forms.Button();
 			this.btnClearAll = new System.Windows.Forms.Button();
@@ -66,11 +68,18 @@
 			// 
 			this.listView.CheckBoxes = true;
 			this.listView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.listView.LargeImageList = this.imageList;
 			this.listView.Location = new System.Drawing.Point(3, 17);
 			this.listView.Name = "listView";
 			this.listView.Size = new System.Drawing.Size(589, 322);
 			this.listView.TabIndex = 2;
 			this.listView.UseCompatibleStateImageBehavior = false;
+			// 
+			// imageList
+			// 
+			this.imageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+			this.imageList.ImageSize = new System.Drawing.Size(64, 64);
+			this.imageList.TransparentColor = System.Drawing.Color.Transparent;
 			// 
 			// grpBoxActions
 			// 
@@ -97,6 +106,7 @@
 			this.btnSelectAll.TabIndex = 3;
 			this.btnSelectAll.Text = "Select All";
 			this.btnSelectAll.UseVisualStyleBackColor = true;
+			this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
 			// 
 			// btnClearAll
 			// 
@@ -109,6 +119,7 @@
 			this.btnClearAll.TabIndex = 4;
 			this.btnClearAll.Text = "Clear All";
 			this.btnClearAll.UseVisualStyleBackColor = true;
+			this.btnClearAll.Click += new System.EventHandler(this.btnClearAll_Click);
 			// 
 			// btnDeleteSelected
 			// 
@@ -121,6 +132,7 @@
 			this.btnDeleteSelected.TabIndex = 5;
 			this.btnDeleteSelected.Text = "Delete Selected";
 			this.btnDeleteSelected.UseVisualStyleBackColor = true;
+			this.btnDeleteSelected.Click += new System.EventHandler(this.btnDeleteSelected_Click);
 			// 
 			// grpBoxScan
 			// 
@@ -201,7 +213,7 @@
 			// lblSpacer
 			// 
 			this.lblSpacer.Name = "lblSpacer";
-			this.lblSpacer.Size = new System.Drawing.Size(597, 17);
+			this.lblSpacer.Size = new System.Drawing.Size(578, 17);
 			this.lblSpacer.Spring = true;
 			// 
 			// progressBar
@@ -219,6 +231,7 @@
 			this.Controls.Add(this.grpBoxScan);
 			this.Controls.Add(this.grpBoxActions);
 			this.Controls.Add(this.grpBoxPreview);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.MinimumSize = new System.Drawing.Size(800, 500);
 			this.Name = "FrmMain";
@@ -253,6 +266,7 @@
 		private System.Windows.Forms.ToolStripStatusLabel lblStatus;
 		private System.Windows.Forms.ToolStripStatusLabel lblSpacer;
 		private System.Windows.Forms.ToolStripProgressBar progressBar;
+		private System.Windows.Forms.ImageList imageList;
 	}
 }
 
